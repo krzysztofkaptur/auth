@@ -7,6 +7,8 @@ import Login from '../pages/Login'
 import Register from '../pages/Register'
 import { action as LogoutAction } from '../pages/Logout'
 
+// import useUserData from '../hooks/useUserData'
+
 const router = createBrowserRouter([
   {
     path: '/',
