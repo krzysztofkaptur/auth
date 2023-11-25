@@ -7,17 +7,16 @@ import { AuthContext } from '../stores/auth'
 async function useUserData() {
   const { user, setUser } = useContext(AuthContext)
 
-  if ('id' in user) {
+  if (user.id) {
     return user
   }
 
   try {
-    const fetchedUser = await fetchMe()
+    const jwt = localStorage.getItem('jwt')
 
-    setUser({
-      id: 1,
-      email: 'dupa@test.com'
-    })
+    const me = await fetchMe(jwt as string)
+
+    setUser(me)
 
     return true
   } catch (error) {

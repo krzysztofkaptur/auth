@@ -12,7 +12,9 @@ export default function LoginPage() {
 
   const { mutate: loginMut } = useMutation({
     mutationFn: loginService,
-    onSuccess: () => {
+    onSuccess: res => {
+      localStorage.setItem('jwt', res.accessToken)
+
       navigate('/')
     }
   })
