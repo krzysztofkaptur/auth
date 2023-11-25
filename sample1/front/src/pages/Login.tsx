@@ -1,5 +1,6 @@
 import { useForm } from 'react-hook-form'
 import { useMutation } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
 
 import Input from '../components/Input'
 
@@ -7,9 +8,13 @@ import { loginService } from '../services/auth'
 
 export default function LoginPage() {
   const { register, handleSubmit } = useForm()
+  const navigate = useNavigate()
 
   const { mutate: loginMut } = useMutation({
-    mutationFn: loginService
+    mutationFn: loginService,
+    onSuccess: () => {
+      navigate('/')
+    }
   })
 
   const onSubmit = handleSubmit(values => {
